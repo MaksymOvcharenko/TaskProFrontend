@@ -129,9 +129,9 @@ export const userCurrent = createAsyncThunk(
 
     try {
       setAuthHeader(persistedToken);
-      const res = await taskProApi.get("/user/current");
-
+      const res = await taskProApi.get("/user/current");      
       return res.data.data;
+      
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

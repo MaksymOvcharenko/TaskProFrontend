@@ -1,19 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { taskProApi } from '../../config/taskProApi';
 
-// GET cards -  Отримує список карток для певної дошки (board).
-export const getCards = createAsyncThunk(
-  'cards/getCards',
-  async (boardId, thunkAPI) => {
-    try {
-      const response = await taskProApi.get(`/cards/${boardId}`);
-      return response.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-
 // POST cards - Додає нову картку до дошки з ідентифікатором boardId. Дані картки передаються в data.
 export const addCard = createAsyncThunk(
   'cards/addCard',
