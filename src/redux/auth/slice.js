@@ -52,7 +52,7 @@ const authSlice = createSlice({
         state.isRefreshing = true;
       })
       .addCase(userCurrent.fulfilled, (state, action) => {
-        state.user = action.payload;
+        state.user = action.payload.user;
         state.isLoggedIn = true;
         state.isRefreshing = false;
       })
@@ -64,7 +64,6 @@ const authSlice = createSlice({
       })
       .addCase(updateUserTheme.fulfilled, (state, action) => {
         state.user.theme = action.payload.date.theme;
-        console.log(state.user.theme);
 
         state.isLoggedIn = true;
         state.isRefreshing = false;

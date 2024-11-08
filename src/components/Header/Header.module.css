@@ -10,6 +10,11 @@
   font-family: "Poppins", sans-serif;
 }
 
+.btnTheme {
+  width: 16px;
+  height: 16px;
+}
+
 .pTheme {
   color: var(--text-secondary);
 
@@ -18,14 +23,21 @@
   font-weight: 500;
   line-height: normal;
   letter-spacing: -0.28px;
+  margin-right: 4px;
 }
 
 .icon {
+  display: flex;
   fill: none;
   stroke: var(--text-primary);
   background-color: var(--background-paper);
   width: 16px;
   height: 8px;
+  transition: transform 0.3s ease;
+}
+
+.icon.rotated {
+  transform: rotate(-180deg);
 }
 
 .profileIcon {

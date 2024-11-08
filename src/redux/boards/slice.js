@@ -1,14 +1,9 @@
-import { createSlice } from '@reduxjs/toolkit';
-import {
-  getBoards,
-  getBoardById,
-  addBoard,
-  updateBoard,
-  deleteBoard,
-} from './operations';
+import { createSlice } from "@reduxjs/toolkit";
+import { addBoard, updateBoard, deleteBoard } from "./operations";
+import { userCurrent } from "../auth/operations.js";
 
 const boardsSlice = createSlice({
-  name: 'boards',
+  name: "boards",
   initialState: {
     boards: [],
     loading: false,
@@ -17,32 +12,29 @@ const boardsSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getBoards.pending, (state) => {
+      .addCase(userCurrent.pending, (state) => {
         state.loading = true;
       })
-      .addCase(getBoards.fulfilled, (state, action) => {
+      .addCase(userCurrent.fulfilled, (state, action) => {
+        state.boards = action.payload.boards;
         state.loading = false;
-        state.boards = action.payload;
       })
-      .addCase(getBoards.rejected, (state, action) => {
+      .addCase(userCurrent.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
-      })
-      .addCase(getBoardById.fulfilled, (state, action) => {
-        state.boards = state.boards.map(board => 
-          board.id === action.payload.id ? action.payload : board
-        );
+        state.error = action.payload.boards;
       })
       .addCase(addBoard.fulfilled, (state, action) => {
-        state.boards.push(action.payload);
+        state.boards.push(action.payload.data);
       })
       .addCase(updateBoard.fulfilled, (state, action) => {
-        state.boards = state.boards.map(board =>
+        state.boards = state.boards.map((board) =>
           board.id === action.payload.id ? action.payload : board
         );
       })
       .addCase(deleteBoard.fulfilled, (state, action) => {
-        state.boards = state.boards.filter(board => board.id !== action.meta.arg);
+        state.boards = state.boards.filter(
+          (board) => board.id !== action.meta.arg
+        );
       });
   },
 });

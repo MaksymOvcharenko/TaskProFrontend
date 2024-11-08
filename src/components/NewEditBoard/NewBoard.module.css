@@ -197,7 +197,9 @@
   z-index: 999;
   opacity: 0;
 }
-
+.inputRad:checked {
+  stroke: var(--text-primary);
+}
 .inputBack {
   position: absolute;
   cursor: pointer;

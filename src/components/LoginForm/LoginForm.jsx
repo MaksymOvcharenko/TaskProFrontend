@@ -5,7 +5,6 @@ import icons from "../../images/icons/icons.svg";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { logIn, userCurrent } from "../../redux/auth/operations.js"; // Імпортуйте userCurrent
-import { getBoards } from "../../redux/boards/operations.js";
 
 // Валідація
 const loginSchema = yup.object().shape({
@@ -45,7 +44,6 @@ const LoginForm = () => {
 
       // Отримати актуальні дані користувача після успішного логіну
       await dispatch(userCurrent());
-      await dispatch(getBoards());
     } catch (error) {
       console.error("Помилка при логіні:", error);
     } finally {

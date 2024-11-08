@@ -1,25 +1,15 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import { taskProApi } from '../../config/taskProApi';
-
-// GET cards -  Отримує список карток для певної дошки (board).
-export const getCards = createAsyncThunk(
-  'cards/getCards',
-  async (boardId, thunkAPI) => {
-    try {
-      const response = await taskProApi.get(`/cards/${boardId}`);
-      return response.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import { taskProApi } from "../../config/taskProApi";
 
 // POST cards - Додає нову картку до дошки з ідентифікатором boardId. Дані картки передаються в data.
 export const addCard = createAsyncThunk(
-  'cards/addCard',
-  async ({ boardId, data }, thunkAPI) => {
+  "cards/addCard",
+  async ({ columnId, data }, thunkAPI) => {
+    console.log(columnId + "test logs");
+
+    console.log(data);
     try {
-      const response = await taskProApi.post(`/cards/${boardId}`, data);
+      const response = await taskProApi.post(`/cards/${columnId}`, data);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -29,7 +19,7 @@ export const addCard = createAsyncThunk(
 
 // PUT cards/:id - Оновлює існуючу картку за її ID (cardId) з новими даними (data).
 export const updateCard = createAsyncThunk(
-  'cards/updateCard',
+  "cards/updateCard",
   async ({ cardId, data }, thunkAPI) => {
     try {
       const response = await taskProApi.put(`/cards/${cardId}`, data);
@@ -42,7 +32,7 @@ export const updateCard = createAsyncThunk(
 
 // DELETE cards/:id - Видаляє картку за її ID (cardId).
 export const deleteCard = createAsyncThunk(
-  'cards/deleteCard',
+  "cards/deleteCard",
   async (cardId, thunkAPI) => {
     try {
       await taskProApi.delete(`/cards/${cardId}`);
@@ -55,7 +45,7 @@ export const deleteCard = createAsyncThunk(
 
 // PATCH cards/:id - Застосовує часткові зміни до картки за її ID (cardId) з новими даними (data).
 export const replaceCard = createAsyncThunk(
-  'cards/replaceCard',
+  "cards/replaceCard",
   async ({ cardId, data }, thunkAPI) => {
     try {
       const response = await taskProApi.patch(`/cards/${cardId}`, data);

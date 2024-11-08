@@ -1,4 +1,4 @@
-const images = [
+const backgrounds = [
   {
     min: "https://res.cloudinary.com/dbxyhtguo/image/upload/v1693220070/backgrounds/mini/vlk8bztf90uy6itveqjl.png",
     desktop:
@@ -162,4 +162,4 @@ const images = [
   },
 ];
 
-export default images;
+export default backgrounds;

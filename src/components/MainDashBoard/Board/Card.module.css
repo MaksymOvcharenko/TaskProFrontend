@@ -1,0 +1,351 @@
+.boardContainer {
+  /* padding-bottom: 24px; */
+  font-family: "Poppins", sans-serif;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.scrollBottomContainer {
+  display: flex;
+  overflow-x: scroll;
+  height: calc(100vh - 145px);
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  margin-bottom: 20px;
+}
+
+.columnWrapper {
+  flex: 0 0 100vw;
+  height: 100%;
+}
+
+.scrollBottomContainer::-webkit-scrollbar {
+  height: 12px;
+  width: 8px;
+}
+.cardList::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.scrollBottomContainer::-webkit-scrollbar-thumb {
+  background-color: var(--bg-scroll-thumb);
+  border-radius: 12px;
+}
+.cardList::-webkit-scrollbar-thumb {
+  background-color: var(--bg-scroll);
+  border-radius: 12px;
+}
+
+.scrollBottomContainer::-webkit-scrollbar-track {
+  margin: 20px;
+}
+
+.scrollBottomContainer::-webkit-scrollbar-track {
+  background-color: var(--bottom-scroll);
+  border-radius: 12px;
+}
+.cardList::-webkit-scrollbar-track {
+  background-color: var(--bg-scroll-track);
+  border-radius: 12px;
+}
+
+.scrollBottomContainer::-webkit-scrollbar-corner,
+.cardList::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+
+.columnNameBox {
+  background-color: var(--background-paper);
+  margin-left: 20px;
+  margin-right: 20px;
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.columnName {
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+.iconsBox {
+  display: flex;
+  gap: 8px;
+}
+
+.columnIcons {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: var(--text-primary);
+  stroke-opacity: 0.5;
+  stroke-width: 1.3;
+  stroke-linecap: "round";
+  stroke-linejoin: "round";
+  transition: 0.2s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.columnIcons:hover,
+.columnIcons:active {
+  stroke: var(--label-green);
+}
+
+.cardList {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 54%);
+  overflow-y: scroll;
+  margin-left: 20px;
+  margin-right: 8px;
+}
+
+.card {
+  background-color: var(--background-paper);
+  margin-right: 4px;
+  border-radius: 8px;
+  padding: 14px 20px;
+  margin-bottom: 8px;
+  position: relative;
+}
+
+.cardStatusSpanWrapper {
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  background-color: var(--label-pink);
+  width: 4px;
+  height: 100%;
+}
+
+.cardTitle {
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.cardDescr {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 133%;
+  letter-spacing: -0.02em;
+  color: var(--text-secondary);
+}
+
+.cardDivider {
+  height: 1px;
+  background-color: var(--secondary-main);
+  margin-bottom: 14px;
+  margin-top: 14px;
+}
+
+.cardEditsInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.cardInfo {
+  display: flex;
+  gap: 14px;
+}
+
+.priority,
+.cardDeadline {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  justify-content: space-between;
+}
+
+.priorityTitle,
+.deadline {
+  font-weight: 400;
+  font-size: 8px;
+  letter-spacing: -0.02em;
+  color: var(--text-secondary);
+}
+
+.priorityValue,
+.deadlineDate {
+  font-weight: 400;
+  font-size: 10px;
+  letter-spacing: -0.02em;
+  color: var(--text-secondary);
+}
+
+.priorityValueWrapper {
+  display: flex;
+  gap: 4px;
+}
+
+.priorityCircle {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--label-pink);
+}
+
+.cardIcons {
+  display: flex;
+  gap: 8px;
+}
+
+.addCardBtn {
+  border-radius: 8px;
+  background: var(--primary-main);
+  margin: 14px 20px;
+  padding: 18px 98px;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: -0.02em;
+  color: var(--button-text);
+  width: -webkit-fill-available;
+  transition: 0.2s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.addCardBtn:hover,
+.addCardBtn:active {
+  background-color: var(--label-green);
+}
+
+.btnIconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--button-text);
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+}
+
+.btnIconWrapper > .columnIcons {
+  stroke: var(--stroke-btn);
+  stroke-opacity: 1;
+  fill: none;
+}
+
+.btnWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.addColumnBtn {
+  border-radius: 8px;
+  background: var(--background-paper);
+  margin: 14px 20px;
+  padding: 14px 60px;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: -0.02em;
+  color: var(--text-secondary);
+  min-width: 355px;
+  height: 56px;
+  transition: 0.2s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.addColumnBtn:hover,
+.addColumnBtn:active {
+  border: var(--text-secondary) 1px solid;
+}
+
+.btnColumnWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.btnIconWrapper > .columnIcons {
+  stroke: var(--stroke-btn);
+  stroke-opacity: 1;
+  fill: none;
+}
+
+@media screen and (min-width: 765px) {
+  .scrollBottomContainer {
+    height: calc(100vh - 160px);
+    gap: 18px;
+    margin-left: 32px;
+  }
+
+  .columnWrapper {
+    flex: 0 0 50vw;
+    flex-basis: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    flex-basis: min-content;
+  }
+
+  .columnNameBox {
+    margin-left: 0px;
+    margin-right: 0px;
+    width: 334px;
+  }
+
+  .cardList {
+    height: calc(100vh - 42%);
+    margin-left: 0px;
+    margin-right: 0px;
+    width: 350px;
+  }
+
+  .card {
+    margin-right: 8px;
+  }
+
+  .cardDivider {
+    height: 1px;
+  }
+
+  .addCardBtn {
+    padding: 14px 89px;
+    height: 56px;
+    width: 334px;
+    margin: 0;
+    margin-top: 14px;
+  }
+
+  .addColumnBtn {
+    margin: 0px;
+    margin-right: 32px;
+    min-width: 355px;
+  }
+
+  .scrollBottomContainer::-webkit-scrollbar-track {
+    margin-left: 0px;
+  }
+}
+
+@media screen and (min-width: 1439px) {
+  .scrollBottomContainer {
+    height: calc(100vh - 120px);
+  }
+
+  .columnWrapper {
+    flex-basis: auto;
+    width: 350px;
+  }
+
+  .cardList {
+    height: calc(100vh - 46%);
+  }
+
+  .addColumnBtn {
+    margin-left: 18px;
+    margin-right: 32px;
+    min-width: 355px;
+  }
+}

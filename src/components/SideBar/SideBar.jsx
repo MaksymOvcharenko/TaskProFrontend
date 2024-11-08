@@ -2,20 +2,32 @@ import { NavLink } from "react-router-dom";
 import s from "./SideBar.module.css";
 import SvgIcon from "../SvgIcon/SvgIcon";
 import cactusImg from "../../images/Sidebar/cactus.png";
-import { useDispatch } from "react-redux";
-import { deleteBoard } from "../../redux/boards/operations";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteBoard} from "../../redux/boards/operations";
 import { useState } from "react";
 import NeedHelpForm from "../NeedHelpForm/NeedHelpForm";
 import { logOut } from "../../redux/auth/operations.js";
 import NewBoard from "../NewEditBoard/NewBoard.jsx";
+import { selectSideBarVisibility } from "../../redux/sideBar/selectors.js";
+import { toggleSideBar } from "../../redux/sideBar/slice.js";
+import { selectBoards } from "../../redux/boards/selectors.js";
+import { selectUser } from "../../redux/auth/selectors.js";
+import { getBoardById } from "../../redux/сolumns/operations.js";
 
 const SideBar = () => {
+  const isSideBarVisible = useSelector(selectSideBarVisibility);
+
+  const handleClose = () => {
+    dispatch(toggleSideBar());
+  };
+  const reduxBoards = useSelector(selectBoards);
+  const boards = reduxBoards.slice().reverse();
+  const userId = useSelector(selectUser);
+
   const dispatch = useDispatch();
-  const boards = [
-    { id: 1, name: "Board 1" },
-    { id: 2, name: "Board 2" },
-    { id: 3, name: "Board 3" },
-  ];
+  const getBoardInfo = (id) => {
+    dispatch(getBoardById(id));
+  };
 
   const handleDelete = (id) => {
     dispatch(deleteBoard(id));
@@ -34,7 +46,10 @@ const SideBar = () => {
   const closeAddBoard = () => setIsAddBoardOpen(false);
   return (
     <>
-      <div className={s.cont}>
+      {isSideBarVisible && (
+        <div className={s.overlay} onClick={handleClose}></div>
+      )}
+      <div className={`${s.cont} ${isSideBarVisible ? s.visible : s.hidden}`}>
         <div>
           <NavLink to="/home" className={s.logoContainer}>
             <span className={s.logoIconWrapper}>
@@ -51,11 +66,18 @@ const SideBar = () => {
           </div>
           <ul className={s.boardsList}>
             {boards.map((board) => (
-              <li key={board.id} className={s.boardItem}>
-                <NavLink to={`/home/${board.id}`} className={s.link}>
+              <li
+                key={board._id}
+                className={s.boardItem}
+                onClick={() => getBoardInfo(board._id)}
+              >
+                <NavLink to={`/home/${board._id}`} className={s.link}>
                   <div className={s.linkContent}>
-                    <SvgIcon id="icon-Project" className={s.projectIcon} />
-                    {board.name}
+                    <SvgIcon
+                      id={`icon-${board.icon}`}
+                      className={s.projectIcon}
+                    />
+                    {board.title}
                   </div>
                   <div className={s.btnGroup}>
                     <button type="button">
@@ -98,7 +120,7 @@ const SideBar = () => {
         </div>
         {isAddBoardOpen && (
           <div>
-            <NewBoard closeModal={closeAddBoard} />
+            <NewBoard closeModal={closeAddBoard} userId={userId._id} />
           </div>
         )}
       </div>

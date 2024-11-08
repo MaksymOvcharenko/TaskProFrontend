@@ -138,6 +138,24 @@
   --text-selected-day: #fcfcfc;
   --add-btn: #161616;
   --hover-btn: #7b7ede;
+
+  --bg-scroll: #b8bcfd;
+  --bg-scroll-track: #fff;
+  --bottom-scroll: #fff;
+  --bg-scroll-thumb: #b8bcfd;
+
+  --modal-overlay: rgba(21, 21, 21, 0.3);
+  --modal-bg: #fcfcfc;
+  --modal-input-border: #b8bcfd;
+  --modal-btn: #5255bc;
+  --hover-modal-btn: #7b7ede;
+  --modal-btn-text: #fff;
+  --modal-plus-icon: #161616;
+  --modal-icon-wrap: #fff;
+
+  --logo-icon-wrapper: #ecedfd;
+  --logo-icon: #5255bc;
+  --logo-title: #fff;
 }
 
 .datePicker {

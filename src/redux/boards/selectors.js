@@ -1,8 +1,9 @@
-// Список дошок
+// Селектор для отримання всіх бордів
 export const selectBoards = (state) => state.boards.boards;
 
-// Статус завантаження дошок
+// Селектор для отримання статусу завантаження
 export const selectLoading = (state) => state.boards.loading;
 
-// Помилка, пов'язана з операціями над дошками.
+// Селектор для отримання повідомлення про помилку
 export const selectError = (state) => state.boards.error;
+

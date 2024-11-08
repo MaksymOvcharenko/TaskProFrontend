@@ -24,6 +24,7 @@
   min-height: 300px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
   z-index: 1000;
+  font-family: "Poppins", sans-serif;
 }
 
 .closeButton {
@@ -36,13 +37,15 @@
   color: var(--text-secondary-color, #333);
   cursor: pointer;
 }
+
 .iconClose {
   width: 18px;
   height: 18px;
   fill: var(--text-primary);
   stroke: var(--text-primary);
   transition: fill 0.3s, stroke 0.3s;
-  &:hover {
+  &:hover,
+  &:focus {
     stroke: var(--primary-main);
     fill: var(--primary-main);
   }
@@ -125,6 +128,20 @@
   object-fit: cover;
 }
 
+.iconEye {
+  width: 18px;
+  height: 18px;
+  fill: #757575;
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  display: block;
+  opacity: 1;
+  visibility: visible;
+  z-index: 999;
+}
+
 .plusIcon {
   stroke: #121212;
   border-radius: 4px;
@@ -160,8 +177,10 @@
   transition: background-color 0.3s;
 }
 
-.btnAdd:hover {
+.btnAdd:hover,
+.btnAdd:focus {
   background-color: var(--btn-hover);
+  border-color: none;
 }
 
 .passwordToggle {
@@ -186,4 +205,14 @@
   text-align: left;
   padding-left: 10px;
   margin-top: 4px;
+}
+
+.error {
+  color: red;
+  font-size: 10px;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 2px;
+  width: 100%;
 }

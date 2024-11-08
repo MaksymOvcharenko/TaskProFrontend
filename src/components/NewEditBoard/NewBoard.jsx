@@ -2,126 +2,25 @@ import SvgIcon from "../SvgIcon/SvgIcon";
 import styles from "./NewBoard.module.css";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router";
 
 import noBack from "../../images/images-bg/images-bg-default.png";
 import { addBoard } from "../../redux/boards/operations.js";
-
-const icons = [
-  { id: "icon-Project", name: "Project" },
-  { id: "icon-star", name: "Star" },
-  { id: "icon-loading", name: "Loading" },
-  { id: "icon-puzzle", name: "Puzzle" },
-  { id: "icon-cube", name: "Cube" },
-  { id: "icon-lightning", name: "Lightning" },
-  { id: "icon-colors", name: "Colors" },
-  { id: "icon-hexagon", name: "Hexagon" },
-];
-
-const backgrounds = [
-  {
-    source:
-      "https://res.cloudinary.com/dbxyhtguo/image/upload/v1693220070/backgrounds/mini/vlk8bztf90uy6itveqjl.png",
-    alt: "cappodocia",
-    key: "cappodocia",
-  },
-  {
-    source:
-      "https://res.cloudinary.com/dbxyhtguo/image/upload/v1693220070/backgrounds/mini/v0wt4bwax3bhdlag1ziv.png",
-    alt: "baloon",
-    key: "baloon",
-  },
-  {
-    source:
-      "https://res.cloudinary.com/dbxyhtguo/image/upload/v1693220071/backgrounds/mini/c08fbwcqicwfqwksxsyx.png",
-    alt: "clouds",
-    key: "clouds",
-  },
-  {
-    source:
-      "https://res.cloudinary.com/dbxyhtguo/image/upload/v1693220071/backgrounds/mini/sey0nharzdv7uzxpt98w.png",
-    alt: "fullMoon",
-    key: "full-moon",
-  },
-  {
-    source:
-      "https://res.cloudinary.com/dbxyhtguo/image/upload/v1693220069/backgrounds/mini/lfrtnx9rqh3koliovr7h.png",
-    alt: "halfMoon",
-    key: "half-moon",
-  },
-  {
-    source:
-      "https://res.cloudinary.com/dbxyhtguo/image/upload/v1693220070/backgrounds/mini/oyfwjk41qpxsud8g8ri9.png",
-    alt: "magnolia",
-    key: "magnolia",
-  },
-  {
-    source:
-      "https://res.cloudinary.com/dbxyhtguo/image/upload/v1693220070/backgrounds/mini/yjuxoyg5cjxzpk30oeoe.png",
-    alt: "mountains",
-    key: "mountains",
-  },
-  {
-    source:
-      "https://res.cloudinary.com/dbxyhtguo/image/upload/v1693220070/backgrounds/mini/yjyionahp9lthpybw5sg.png",
-    alt: "nightTrailer",
-    key: "night-trailer",
-  },
-  {
-    source:
-      "https://res.cloudinary.com/dbxyhtguo/image/upload/v1693220071/backgrounds/mini/sce6oy35czbj7yb9osoe.png",
-    alt: "palmLeaves",
-    key: "palm-leaves",
-  },
-  {
-    source:
-      "https://res.cloudinary.com/dbxyhtguo/image/upload/v1693220070/backgrounds/mini/whne8ssdvejvamukn7sc.png",
-    alt: "rockyBeach",
-    key: "rocky-beach",
-  },
-  {
-    source:
-      "https://res.cloudinary.com/dbxyhtguo/image/upload/v1693220070/backgrounds/mini/womdt7hq0ngnofzbuhgu.png",
-    alt: "sakura",
-    key: "sakura",
-  },
-  {
-    source:
-      "https://res.cloudinary.com/dbxyhtguo/image/upload/v1693220070/backgrounds/mini/tqbovopj2qyuln6ing9o.png",
-    alt: "sea",
-    key: "sea",
-  },
-  {
-    source:
-      "https://res.cloudinary.com/dbxyhtguo/image/upload/v1693220070/backgrounds/mini/csxhywowypy9arxzig17.png",
-    alt: "starrySky",
-    key: "starry-sky",
-  },
-  {
-    source:
-      "https://res.cloudinary.com/dbxyhtguo/image/upload/v1693220070/backgrounds/mini/vaxhftlahpyrpje3itvb.png",
-    alt: "violetCircle",
-    key: "violet-circle",
-  },
-  {
-    source:
-      "https://res.cloudinary.com/dbxyhtguo/image/upload/v1693220070/backgrounds/mini/pgjqswykxm1qukwfyic0.png",
-    alt: "yacht",
-    key: "yacht",
-  },
-];
+import icons from "../../images/icons/icons.js";
+import backgrounds from "../../images/background/background.js";
+// import backgrounds from "../../images/icons/background.js";
 
 export const NewBoard = ({ closeModal }) => {
   const [iconsSelected, setIconsSelected] = useState("icon-Project");
-  const [backgroundSelected, setBackgroundSelected] = useState("no-background");
+  const [backgroundSelected, setBackgroundSelected] = useState({});
   const [title, setTitle] = useState("");
 
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleTitleChange = (event) => setTitle(event.target.value);
   const handleIconChange = (event) =>
     setIconsSelected(event.currentTarget.dataset.source);
+  console.log();
+
   const handleBackgroundChange = (event) =>
     setBackgroundSelected(event.currentTarget.dataset.source);
 
@@ -132,9 +31,11 @@ export const NewBoard = ({ closeModal }) => {
   };
 
   const createNewBoard = () => {
+    console.log(backgroundSelected);
+
     dispatch(addBoard(newBoardObject));
     closeModal();
-    navigate(`/${title}`);
+    // navigate(`/${title}`);
   };
 
   return (
@@ -162,16 +63,18 @@ export const NewBoard = ({ closeModal }) => {
             <li key={icon.id}>
               <input
                 type="radio"
-                data-source={icon.id}
+                data-source={icon.name}
                 name="icons"
                 className={styles.inputRad}
-                checked={iconsSelected === icon.id}
+                checked={iconsSelected === icon.name}
                 onChange={handleIconChange}
-              />
+              ></input>
               <SvgIcon
                 id={icon.id}
                 className={
-                  iconsSelected === icon.id ? styles.darkIcons : styles.serIcons
+                  iconsSelected === icon.name
+                    ? styles.darkIcons
+                    : styles.serIcons
                 }
               />
             </li>
@@ -208,12 +111,12 @@ export const NewBoard = ({ closeModal }) => {
               <input
                 type="radio"
                 name="backgrounds"
-                data-source={bg.key}
+                data-source={bg}
                 className={styles.inputBack}
-                checked={backgroundSelected === bg.key}
+                checked={backgroundSelected === bg}
                 onChange={handleBackgroundChange}
               />
-              <img src={bg.source} alt={bg.alt} className={styles.img_back} />
+              <img src={bg.min} alt={bg.alt} className={styles.img_back} />
             </li>
           ))}
         </ul>

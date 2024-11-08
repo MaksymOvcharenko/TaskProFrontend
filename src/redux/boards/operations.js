@@ -1,62 +1,20 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import { taskProApi, setAuthHeader } from '../../config/taskProApi';
-
-// Отримати всі борди
-export const getBoards = createAsyncThunk(
-  'boards/getBoards',
-  async (_, thunkAPI) => {
-    const state = thunkAPI.getState();
-    const token = state.auth.token;
-
-    if (!token) {
-      return thunkAPI.rejectWithValue('Token not found');
-    }
-
-    try {
-      setAuthHeader(token);
-      const response = await taskProApi.get('/boards');
-      return response.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-
-// Отримати борд за ID
-export const getBoardById = createAsyncThunk(
-  'boards/getBoardById',
-  async (boardId, thunkAPI) => {
-    const state = thunkAPI.getState();
-    const token = state.auth.token;
-
-    if (!token) {
-      return thunkAPI.rejectWithValue('Token not found');
-    }
-
-    try {
-      setAuthHeader(token);
-      const response = await taskProApi.get(`/board/${boardId}`);
-      return response.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import { taskProApi, setAuthHeader } from "../../config/taskProApi";
 
 // Додати борд
 export const addBoard = createAsyncThunk(
-  'boards/addBoard',
+  "boards/addBoard",
   async (data, thunkAPI) => {
     const state = thunkAPI.getState();
     const token = state.auth.token;
 
     if (!token) {
-      return thunkAPI.rejectWithValue('Token not found');
+      return thunkAPI.rejectWithValue("Token not found");
     }
 
     try {
       setAuthHeader(token);
-      const response = await taskProApi.post('/board', data);
+      const response = await taskProApi.post("/boards", data);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -66,13 +24,13 @@ export const addBoard = createAsyncThunk(
 
 // Оновити борд
 export const updateBoard = createAsyncThunk(
-  'boards/updateBoard',
+  "boards/updateBoard",
   async ({ boardId, data }, thunkAPI) => {
     const state = thunkAPI.getState();
     const token = state.auth.token;
 
     if (!token) {
-      return thunkAPI.rejectWithValue('Token not found');
+      return thunkAPI.rejectWithValue("Token not found");
     }
 
     try {
@@ -87,13 +45,13 @@ export const updateBoard = createAsyncThunk(
 
 // Видалити борд
 export const deleteBoard = createAsyncThunk(
-  'boards/deleteBoard',
+  "boards/deleteBoard",
   async (boardId, thunkAPI) => {
     const state = thunkAPI.getState();
     const token = state.auth.token;
 
     if (!token) {
-      return thunkAPI.rejectWithValue('Token not found');
+      return thunkAPI.rejectWithValue("Token not found");
     }
 
     try {

@@ -1,15 +1,77 @@
 .cont {
   background-color: var(--background-default);
-  font-family: "Poppins";
+  font-family: "Poppins", sans-serif;
   padding: 14px;
-  /* display: flex; */
-  display: none;
   flex-direction: column;
   justify-content: space-between;
   height: 100vh;
   overflow-y: auto;
-  min-width: 225px;
+  overflow-x: hidden;
+  width: 225px;
+  display: none;
 }
+
+@media (max-width: 768px) {
+  .cont {
+    position: fixed;
+    display: flex;
+    height: 100vh;
+    z-index: 1000;
+    transition: transform 0.3s ease;
+  }
+  .cont.hidden {
+    display: none;
+  }
+  .cont.visible {
+    display: flex;
+  }
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--modal-overlay);
+    z-index: 999;
+  }
+}
+@media (min-width: 760px) and (max-width: 1439px) {
+  .cont {
+    position: fixed;
+    display: flex;
+    min-width: 260px;
+    z-index: 1000;
+    padding: 24px;
+    transition: transform 0.3s ease;
+  }
+  .cont.hidden {
+    display: none;
+  }
+  .cont.visible {
+    display: flex;
+  }
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--modal-overlay);
+    z-index: 999;
+  }
+}
+
+@media (min-width: 1440px) {
+  .cont {
+    padding: 24px;
+    display: flex;
+    min-width: 260px;
+  }
+  .overlay {
+    display: none;
+  }
+}
+
 .cont::-webkit-scrollbar {
   background-color: var(--bg-scroll-track);
   width: 4px;
@@ -20,17 +82,7 @@
   background-color: var(--bg-scroll-thumb);
   border-radius: 12px;
 }
-@media (min-width: 768px) {
-  .cont {
-    /* max-width: 260px; */
-    padding: 24px;
-  }
-}
-@media screen and (min-width: 1440px) {
-  .cont {
-    display: flex;
-  }
-}
+
 .logoContainer {
   display: flex;
   gap: 8px;
@@ -113,6 +165,21 @@
   flex-direction: column;
   list-style: none;
   gap: 4px;
+  max-height: 185px;
+  overflow-y: auto;
+  margin-bottom: 40px;
+}
+.boardsList::-webkit-scrollbar {
+  width: 6px;
+}
+
+.boardsList::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.boardsList::-webkit-scrollbar-thumb {
+  background-color: var(--bg-scroll-thumb);
+  border-radius: 3px;
 }
 .cont .boardsList {
   margin-left: -14px;
@@ -135,9 +202,6 @@
   .boardItem {
     padding: 20px 24px;
   }
-}
-.boardItem:last-child {
-  margin-bottom: 40px;
 }
 .boardItem:hover,
 .boardItem:focus {

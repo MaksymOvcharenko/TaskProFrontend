@@ -5,7 +5,7 @@ import SvgIcon from "../SvgIcon/SvgIcon";
 import s from "./AddColumnForm.module.css";
 import { addColumn } from "../../redux/сolumns/operations";
 
-const AddColumnForm = ({ closeModal }) => {
+const AddColumnForm = ({ closeModal, boardId }) => {
   const dispatch = useDispatch();
 
   const validationSchema = Yup.object({
@@ -19,7 +19,7 @@ const AddColumnForm = ({ closeModal }) => {
   const handleSubmit = (values, { resetForm }) => {
     const { title } = values;
 
-    dispatch(addColumn({ title }));
+    dispatch(addColumn({ id: boardId, title: title }));
 
     resetForm();
     closeModal();
