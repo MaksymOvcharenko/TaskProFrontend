@@ -74,7 +74,7 @@ Task Pro is a web-based task planning application that helps users organize thei
 
 ### 5. Launch and support:
 
-- Deploying a project on **GitHub Pages**.
+- Deploying a project on **Vercel**.
 - Regular updates based on user feedback and testing of new features.
 
 ---
