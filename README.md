@@ -22,7 +22,7 @@ Task Pro is a web-based task planning application that helps users organize thei
 - Users can customize the look of the boards: choosing a name, icon and background for each board.
 - Easy access to all functions through the navigation bar.
 
-![main-page](./src/images/readme/main-page.png)
+![main-page](./src/images/readme/side-bar.png)
 
 ### 3. Dynamic task management:
 
